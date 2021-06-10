@@ -13,9 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','App\Http\Controllers\FrontendController@index');
+Route::get('/contact','App\Http\Controllers\FrontendController@contact');
+Route::get('/work','App\Http\Controllers\FrontendController@work');
+Route::get('/about','App\Http\Controllers\FrontendController@about');
+    
 
 Auth::routes();
 Route::group(['middleware' => ['auth', 'disablepreventback']], function () {
