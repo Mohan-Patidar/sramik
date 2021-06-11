@@ -17,6 +17,7 @@ Route::get('/','App\Http\Controllers\FrontendController@index');
 Route::get('/contact','App\Http\Controllers\FrontendController@contact');
 Route::get('/work','App\Http\Controllers\FrontendController@work');
 Route::get('/about','App\Http\Controllers\FrontendController@about');
+
     
 
 Auth::routes();
@@ -31,7 +32,8 @@ Route::group(['middleware' => ['auth', 'disablepreventback']], function () {
     Route::get('labourpdf/{id}','App\Http\Controllers\labourController@labourdata')->name('labourdata');
     Route::get('farmer_pdf','App\Http\Controllers\farmerController@farmerPdf')->name('farmerPdf');
     Route::get('farmerpdf/{id}','App\Http\Controllers\farmerController@farmerdata')->name('farmerdata');
-
+    Route::resource('/bussiness','App\Http\Controllers\BussinessController');
+    Route::get('sendsms','App\Http\Controllers\labourController@sendSms')->name('sendSms');
 });
 Route::get('contact-us', 'App\Http\Controllers\ContactUSController@contactUS');
 Route::post('contact-us', ['as'=>'contactus.store','uses'=>'App\Http\Controllers\ContactUSController@contactSaveData']);

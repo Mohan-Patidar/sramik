@@ -62,7 +62,14 @@
                             </a>
                         </li>
                         @endif
-                
+                        <li @if(request()->segment(1) == 'bussiness') class="active" @endif>
+                            <a href="{{ url('/bussiness') }}">
+                                <i>
+                                    <img src="{{url('/')}}/assets/image/dashboard-icon.svg" class="menu-show" alt="">
+                                </i>
+                                <span>व्यापारी</span>
+                            </a>
+                        </li>
                     <li @if(request()->segment(1) == 'profile') class="active" @endif>
                         <a href="{{url('/profile')}}">
                             <i>
@@ -164,6 +171,22 @@
                     }
                 });
         });
+        function sendSms(id){
+                 $.ajax({
+                            url: "http://nextige.com/sramik-sewa/sendsms",
+                            type: "GET",
+                            data: {
+                                id: id,
+                                "_token": "{{ csrf_token() }}",
+                            },
+                            success: function(data) {
+                          
+  
+
+                            }
+
+                        });
+        }
    </script>
 </body>
 
