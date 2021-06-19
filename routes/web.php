@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/','App\Http\Controllers\FrontendController@index');
-Route::get('/contact','App\Http\Controllers\FrontendController@contact');
+Route::get('/contact','App\Http\Controllers\FrontendController@contact_us');
+Route::post('/contact','App\Http\Controllers\FrontendController@post_contact_us');
 Route::get('/work','App\Http\Controllers\FrontendController@work');
 Route::get('/about','App\Http\Controllers\FrontendController@about');
 
@@ -35,7 +36,6 @@ Route::group(['middleware' => ['auth', 'disablepreventback']], function () {
     Route::resource('/bussiness','App\Http\Controllers\BussinessController');
     Route::get('sendsms','App\Http\Controllers\labourController@sendSms')->name('sendSms');
 });
-Route::get('contact-us', 'App\Http\Controllers\ContactUSController@contactUS');
-Route::post('contact-us', ['as'=>'contactus.store','uses'=>'App\Http\Controllers\ContactUSController@contactSaveData']);
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
