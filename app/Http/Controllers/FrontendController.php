@@ -48,4 +48,8 @@ class FrontendController extends Controller
         return view('front.about');
     }
 
+    public function business_register(){
+        return view('razorpayViews');
+    }
+
 }

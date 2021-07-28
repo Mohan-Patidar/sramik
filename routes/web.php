@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RazorpayPaymentController;
+use App\Http\Controllers\RazorpayController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,6 +20,7 @@ Route::get('/contact','App\Http\Controllers\FrontendController@contact_us');
 Route::post('/contact','App\Http\Controllers\FrontendController@post_contact_us');
 Route::get('/work','App\Http\Controllers\FrontendController@work');
 Route::get('/about','App\Http\Controllers\FrontendController@about');
+Route::get('/business_register','App\Http\Controllers\FrontendController@business_register');
 
     
 
@@ -46,10 +49,13 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
     
-Route::get('paywithrazorpay','App\Http\Controllers\RazorpayPaymentController@payWithRazorpay')->name('payWithRazorpay');
-Route::get('payment','App\Http\Controllers\RazorpayPaymentController@payment')->name('payment'); 
+Route::get('paywithrazorpays','App\Http\Controllers\RazorpayPaymentController@payWithRazorpay')->name('payWithRazorpay');
+Route::get('payments','App\Http\Controllers\RazorpayPaymentController@payment')->name('payment'); 
 
 
 
+
+Route::get('paywithrazorpay', [RazorpayController::class,'payWithRazorpay'])->name('paywithrazorpay');
+Route::post('payment', [RazorpayController::class,'payment'])->name('payment');
 
 // Route::post('razorpay-payment', [RazorpayPaymentController::class, 'store'])->name('razorpay.payment.store');

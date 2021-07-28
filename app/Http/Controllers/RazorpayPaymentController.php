@@ -4,6 +4,7 @@
  
   use Illuminate\Http\Request;
   use Razorpay\Api\Api;
+  use App\Models\Payment;
   use Session;
   use Redirect;
 class RazorpayPaymentController extends Controller
@@ -15,7 +16,7 @@ class RazorpayPaymentController extends Controller
      */
     public function payWithRazorpay()
     {        
-        return view('razorpayView');
+        return view('razorpayViews');
     }
  
   
