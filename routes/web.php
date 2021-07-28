@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\RazorpayPaymentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,7 +35,21 @@ Route::group(['middleware' => ['auth', 'disablepreventback']], function () {
     Route::get('farmerpdf/{id}','App\Http\Controllers\farmerController@farmerdata')->name('farmerdata');
     Route::resource('/bussiness','App\Http\Controllers\BussinessController');
     Route::get('sendsms','App\Http\Controllers\labourController@sendSms')->name('sendSms');
+
+
+
+
 });
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+    
+Route::get('paywithrazorpay','App\Http\Controllers\RazorpayPaymentController@payWithRazorpay')->name('payWithRazorpay');
+Route::get('payment','App\Http\Controllers\RazorpayPaymentController@payment')->name('payment'); 
+
+
+
+
+// Route::post('razorpay-payment', [RazorpayPaymentController::class, 'store'])->name('razorpay.payment.store');
