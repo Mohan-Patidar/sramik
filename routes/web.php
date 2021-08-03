@@ -59,3 +59,15 @@ Route::get('paywithrazorpay', [RazorpayController::class,'payWithRazorpay'])->na
 Route::post('payment', [RazorpayController::class,'payment'])->name('payment');
 
 // Route::post('razorpay-payment', [RazorpayPaymentController::class, 'store'])->name('razorpay.payment.store');
+// Route::get('/greeting', function () {
+//     return view('forms');
+// });
+Route::get('/greet', function () {
+    return view('front.registration_step');
+});
+
+Route::post('/account_info','App\Http\Controllers\FrontendController@account_save');
+Route::get('/personal_info','App\Http\Controllers\FrontendController@personal_info')->name('personal_info');
+
+Route::post('/personal_info','App\Http\Controllers\FrontendController@personal_info_save')->name('personal_info_save');
+

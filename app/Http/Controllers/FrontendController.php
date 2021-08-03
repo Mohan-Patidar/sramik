@@ -3,7 +3,13 @@
 namespace App\Http\Controllers;
 use Mail;
 use App\Models\ContactUS;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use stdClass;
+
+
 
 class FrontendController extends Controller
 {
@@ -51,5 +57,28 @@ class FrontendController extends Controller
     public function business_register(){
         return view('razorpayViews');
     }
+    public function account_save(Request $request){
+        $data = $request->all();
+        // var_dump($data);
+        // die;
+        // return User::create([
+        //     'name' => $data['uname'],
+        //     'email' => $data['email'],
+        //     'password' => Hash::make($data['password']),
+        // ]);
+        // return Response()->json($data);
+        return redirect()->route('personal_info');
+    }
+    public function personal_info(){
+        
+        return view('front.personal_info_step');
+    }
+    public function personal_info_save(Request $request){
+        $data = $request->all();
+        //  var_dump($data);
+        // die;
+        return view('front.payment');
+    }
+    
 
 }

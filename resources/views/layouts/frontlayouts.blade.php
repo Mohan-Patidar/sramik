@@ -223,6 +223,61 @@ https://templatemo.com/tm-561-purple-buzz
     <script src="{{url('/')}}/front-end/assets/js/templatemo.js"></script>
     <!-- Custom -->
     <script src="{{url('/')}}/front-end/assets/js/custom.js"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+        $('body').on('click','#rzp-button1',function(e){
+            e.preventDefault();
+            var name = $('.name').val();
+            var email = $('.email').val();
+            var mobile_no = $('.mobile_no').val();
+            var amount = $('.amount').val();
+            var total_amount = amount * 100;
+            var options = {
+                "key": "{{ env('RAZORPAY_KEY') }}", // Enter the Key ID generated from the Dashboard
+                "amount": total_amount, // Amount is in currency subunits. Default currency is INR. Hence, 10 refers to 1000 paise
+                "currency": "INR",
+                "name": "NiceSnippets",
+                "description": "Test Transaction",
+                "image": "https://www.nicesnippets.com/image/imgpsh_fullsize.png",
+                "order_id": "", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+                "handler": function (response){
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    $.ajax({
+                        type:'POST',
+                        url:"{{ route('payment') }}",
+                        data:{razorpay_payment_id:response.razorpay_payment_id,amount:amount},
+                        success:function(data){
+                            $('.success-message').text(data.success);
+                            $('.success-alert').fadeIn('slow', function(){
+                               $('.success-alert').delay(5000).fadeOut(); 
+                            });
+                            $('.amount').val('');
+                            $('.name').val('');
+                            $('.mobile_no').val('');
+                            $('.email').val('');
+                        }
+                    });
+                },
+                "prefill": {
+                    "name": name,
+                    "email": email,
+                    "contact": mobile_no
+                },
+                "notes": {
+                    "address": "test test"
+                },
+                "theme": {
+                    "color": "#F37254"
+                }
+            };
+            var rzp1 = new Razorpay(options);
+            rzp1.open();
+        });
+    </script>
 
 </body>
 
