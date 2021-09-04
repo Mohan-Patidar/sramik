@@ -25,12 +25,6 @@
                             <div class="card-header">
                                 Razorpay Example
                             </div>
-
-
-
-                            
-                            
-
                             <div class="card-body text-center">
                                 <div class="form-group mt-1 mb-1">
                                 <label>Name</label>
@@ -42,7 +36,7 @@
                                 </div>
                                 <div class="form-group mt-1 mb-1">
                                 <label>Mobile Number</label>
-                                    <input type="text" name="mobile_no" placeholder="10" class="form-control mobile_no" >
+                                    <input type="text" name="mobile_no" placeholder="" class="form-control mobile_no" >
                                 </div>
                                 <div class="form-group mt-1 mb-1">
                                 <label>Payment</label>

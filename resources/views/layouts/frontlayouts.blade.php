@@ -49,6 +49,9 @@ https://templatemo.com/tm-561-purple-buzz
                         <li class="nav-item">
                             <a class="nav-link btn-outline-primary rounded-pill px-3" href="{{url('/work')}}">Work</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn-outline-primary rounded-pill px-3" href="{{url('/kisan_sewa')}}">Kisan Sewa</a>
+                        </li>
                         
                         <li class="nav-item">
                             <a class="nav-link btn-outline-primary rounded-pill px-3" href="{{url('/business_register')}}">Business</a>
@@ -278,6 +281,84 @@ https://templatemo.com/tm-561-purple-buzz
             rzp1.open();
         });
     </script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase.js"></script>
+  
+  <script>
+        
+        var firebaseConfig = {
+      apiKey: "AIzaSyBJXttGTq3joaZoliMIbYvzaEHehQ_Ih1I",
+      authDomain: "sramik-b2ad7.firebaseapp.com",
+      projectId: "sramik-b2ad7",
+      storageBucket: "sramik-b2ad7.appspot.com",
+      messagingSenderId: "768242147144",
+      appId: "1:768242147144:web:993b825cef77c04e46dd7d",
+      measurementId: "G-B34SNW4JMZ"
+    };
+      
+    firebase.initializeApp(firebaseConfig);
+  </script>
+    
+  <script type="text/javascript">
+    
+      window.onload=function () {
+        render();
+      };
+    
+      function render() {
+          window.recaptchaVerifier=new firebase.auth.RecaptchaVerifier('recaptcha-container');
+          recaptchaVerifier.render();
+      }
+    
+      function SendCode() {
+        
+          var number = $("#number").val();
+          var email = $("#email").val();
+          var name = $("#name").val();
+          var password = $("#password").val();
+         
+          $.ajax({
+                          type:'POST',
+                          url:"{{ url('account_info') }}",
+                          data:{name:name,email:email,number:number,password:password, "_token": "{{ csrf_token() }}"},
+                          success:function(data){
+                            
+                          firebase.auth().signInWithPhoneNumber(number,window.recaptchaVerifier).then(function (confirmationResult) {
+                
+              window.confirmationResult=confirmationResult;
+              coderesult=confirmationResult;            
+    
+              $("#sentSuccess").text("Message Sent Successfully.");
+              $("#sentSuccess").show();
+            }).catch(function (error) {
+              $("#error").text(error.message);
+              $("#error").show();
+          });
+    
+                
+                          }
+                      });
+          
+        
+      }
+    
+      function VerifyCode() {
+    
+          var code = $("#verificationCode").val();
+    
+          coderesult.confirm(code).then(function (result) {
+              var user=result.user;            
+    
+              $("#successRegsiter").text("You Are Register Successfully.");
+              $("#successRegsiter").show();
+              window.location = '{{ url('personal_info') }}'
+    
+          }).catch(function (error) {
+              $("#error").text(error.message);
+              $("#error").show();
+          });
+      }
+    
+  </script>
 
 </body>
 

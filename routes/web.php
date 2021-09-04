@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RazorpayPaymentController;
 use App\Http\Controllers\RazorpayController;
+use App\Http\Controllers\FirebaseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,8 @@ use App\Http\Controllers\RazorpayController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('firebase-phone-authentication', [FirebaseController::class, 'index']);
 
 Route::get('/','App\Http\Controllers\FrontendController@index');
 Route::get('/contact','App\Http\Controllers\FrontendController@contact_us');
@@ -55,16 +58,15 @@ Route::get('payments','App\Http\Controllers\RazorpayPaymentController@payment')-
 
 
 
-Route::get('paywithrazorpay', [RazorpayController::class,'payWithRazorpay'])->name('paywithrazorpay');
-Route::post('payment', [RazorpayController::class,'payment'])->name('payment');
+// Route::get('paywithrazorpay', [RazorpayController::class,'payWithRazorpay'])->name('paywithrazorpay');
+// Route::post('payment', [RazorpayController::class,'payment'])->name('payment');
 
 // Route::post('razorpay-payment', [RazorpayPaymentController::class, 'store'])->name('razorpay.payment.store');
 // Route::get('/greeting', function () {
 //     return view('forms');
 // });
-Route::get('/greet', function () {
-    return view('front.registration_step');
-});
+Route::get('/kisan_sewa','App\Http\Controllers\FrontendController@kisan_sewa')->name('kisan_sewa');
+   
 
 Route::post('/account_info','App\Http\Controllers\FrontendController@account_save');
 Route::get('/personal_info','App\Http\Controllers\FrontendController@personal_info')->name('personal_info');

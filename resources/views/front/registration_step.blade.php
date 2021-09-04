@@ -19,23 +19,29 @@
                             <input type="text" class="form-control form-control-lg light-300" id="floatingname" name="name" placeholder="Name">
                             <label for="floatingname light-300">User Name</label>
                         </div>
-                    </div><!-- End Input Name -->
+                    </div>
 
                     <div class="col-lg-6 mb-4">
                         <div class="form-floating">
                             <input type="email" class="form-control form-control-lg light-300" id="floatingemail" name="email" placeholder="Email">
                             <label for="floatingemail light-300">Email</label>
                         </div>
-                    </div><!-- End Input Email -->
+                    </div>
+
+                    
+                    <div class="col-lg-6 mb-4">
+                        <div class="form-floating">
+                            <input type="text" class="form-control form-control-lg light-300" id="floatingphone" name="phone_number" placeholder="Phone Number">
+                            <label for="floatingphone light-300">Mobile Number</label>
+                        </div>
+                    </div>
 
                     <div class="col-lg-6 mb-4">
                         <div class="form-floating">
                             <input type="password" class="form-control form-control-lg light-300" id="floatingphone" name="password" placeholder="Password">
                             <label for="floatingphone light-300">Password</label>
                         </div>
-                    </div><!-- End Input Phone -->
-
-                   <!-- End Input Company Name -->
+                    </div>
 
                     <div class="col-12">
                         <div class="form-floating mb-4">

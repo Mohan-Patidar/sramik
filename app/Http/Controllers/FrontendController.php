@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use stdClass;
+use Illuminate\Support\Facades\DB;
+
 
 
 
@@ -57,17 +59,32 @@ class FrontendController extends Controller
     public function business_register(){
         return view('razorpayViews');
     }
+
+    public function kisan_sewa(){
+        return view('front.kisan-sewa');
+    }
+
     public function account_save(Request $request){
         $data = $request->all();
-        // var_dump($data);
-        // die;
-        // return User::create([
-        //     'name' => $data['uname'],
-        //     'email' => $data['email'],
-        //     'password' => Hash::make($data['password']),
+
+        // $request->validate([
+        //     'name' => ['required', 'string', 'max:255'],
+        //     'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+        //     'password' => ['required', 'string', 'min:8', 'confirmed'],
+        //     'phone_number' =>['required'],
+            
         // ]);
-        // return Response()->json($data);
-        return redirect()->route('personal_info');
+
+    
+        User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'phone_number' => $data['number'],
+            'user_type' =>'farmer',
+            'password' => Hash::make($data['password']),
+        ]);
+        return Response()->json($data);
+        // return redirect()->route('personal_info');
     }
     public function personal_info(){
         
@@ -77,6 +94,15 @@ class FrontendController extends Controller
         $data = $request->all();
         //  var_dump($data);
         // die;
+        $work = implode(",",$request->work);
+
+         $input['farmer_name'] =$request->farmer_name;
+         $input['work'] =$work;
+         $input['address'] =$request->address;
+         $input['gender'] =$request->gender;
+         DB::table('register_farmers')->insert(
+            array($input));
+            
         return view('front.payment');
     }
     

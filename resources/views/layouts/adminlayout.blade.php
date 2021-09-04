@@ -35,7 +35,7 @@
                         श्रमिक सेवा
                         </a>
                     </div>
-                    @if(Auth::check() && Auth::user()->user_type == "Admin")
+                
                     <ul class="side-menu">
                         <li @if(request()->segment(1) == 'dashboard') class="active" @endif>
                             <a href="{{url('/dashboard')}}">
@@ -61,7 +61,7 @@
                                 <span>किसान</span>
                             </a>
                         </li>
-                        @endif
+                        
                         <li @if(request()->segment(1) == 'bussiness') class="active" @endif>
                             <a href="{{ url('/bussiness') }}">
                                 <i>
