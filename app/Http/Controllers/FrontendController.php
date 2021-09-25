@@ -91,7 +91,7 @@ class FrontendController extends Controller
         return view('front.personal_info_step');
     }
     public function personal_info_save(Request $request){
-        $data = $request->all();
+        // $data = $request->all();
         //  var_dump($data);
         // die;
         $work = implode(",",$request->work);

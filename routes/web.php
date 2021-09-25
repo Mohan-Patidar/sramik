@@ -52,24 +52,21 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
     
-Route::get('paywithrazorpays','App\Http\Controllers\RazorpayPaymentController@payWithRazorpay')->name('payWithRazorpay');
-Route::get('payments','App\Http\Controllers\RazorpayPaymentController@payment')->name('payment'); 
+// Route::get('paywithrazorpays','App\Http\Controllers\RazorpayPaymentController@payWithRazorpay')->name('payWithRazorpay');
+// Route::get('payments','App\Http\Controllers\RazorpayPaymentController@payment')->name('payment'); 
 
 
 
 
-// Route::get('paywithrazorpay', [RazorpayController::class,'payWithRazorpay'])->name('paywithrazorpay');
-// Route::post('payment', [RazorpayController::class,'payment'])->name('payment');
+Route::get('paywithrazorpay', [RazorpayController::class,'payWithRazorpay'])->name('paywithrazorpay');
+Route::post('payment', [RazorpayController::class,'payment'])->name('payment');
 
 // Route::post('razorpay-payment', [RazorpayPaymentController::class, 'store'])->name('razorpay.payment.store');
 // Route::get('/greeting', function () {
 //     return view('forms');
 // });
 Route::get('/kisan_sewa','App\Http\Controllers\FrontendController@kisan_sewa')->name('kisan_sewa');
-   
-
 Route::post('/account_info','App\Http\Controllers\FrontendController@account_save');
 Route::get('/personal_info','App\Http\Controllers\FrontendController@personal_info')->name('personal_info');
-
 Route::post('/personal_info','App\Http\Controllers\FrontendController@personal_info_save')->name('personal_info_save');
 

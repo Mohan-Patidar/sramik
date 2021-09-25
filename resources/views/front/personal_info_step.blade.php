@@ -23,10 +23,10 @@
                                 </div>
                                 <div class="form-group mt-1 mb-1">
                                 <label>Gender</label>
-                                    <input type="radio" id="female" name="gender" >
-                                    <label for="female" class="d-inline-block mr-3">F</label>
-                                    <input type="radio" id="male" name="gender" checked>
-                                    <label for="male" class="d-inline-block ">M</label>
+                                    <input type="radio" id="female" name="gender" value="female">
+                                    <label for="female" class="d-inline-block mr-3">Female</label>
+                                    <input type="radio" id="male" name="gender" value="male" checked>
+                                    <label for="male" class="d-inline-block ">Male</label>
                                 </div>
                                 <div class="form-group mt-1 mb-1">
                                 <label>Crops</label>
